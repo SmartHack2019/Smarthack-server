@@ -1,16 +1,14 @@
 ﻿using Microsoft.ML;
-using Microsoft.ML.Data;
 using smarthack.Helper.SentimentAnalyzer.Models;
 using System;
 using System.IO;
 using System.Linq;
 using static Microsoft.ML.DataOperationsCatalog;
 
-namespace smarthack.Helper.Clasifier
+namespace smarthack.Helper.Classifier
 {
-    public static class Clasifier
+    public static class Classifier
     {
-
         private static readonly string _dataPath = Path.Combine(Environment.CurrentDirectory, "Data/SentimentAnalyzerData", "yelp_labelled.txt");
         public static void Clasify()
         {
@@ -21,7 +19,7 @@ namespace smarthack.Helper.Clasifier
         }
         public static TrainTestData LoadData(MLContext mlContext)
         {
-            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(Clasifier._dataPath, hasHeader: false);
+            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(Classifier._dataPath, hasHeader: false);
             TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2);
             return splitDataView;
         }
@@ -43,6 +41,7 @@ namespace smarthack.Helper.Clasifier
             Console.WriteLine($"Sentiment: {resultPrediction.Sentiment} | Prediction: {(Convert.ToBoolean(resultPrediction.Prediction) ? "Positive" : "Negative")} | Probability: {resultPrediction.Probability} ");
             //var sentiment = Convert.ToBoolean(resultPrediction.Prediction) ? "Toxic" : "Not Toxic";
             //Console.WriteLine(sentiment);
+
             return resultPrediction;
         }
      

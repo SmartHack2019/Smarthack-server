@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using smarthack.Helper.Clasifier;
+using smarthack.Helper.Classifier;
 using System.Collections.Generic;
 
 namespace smarthack.Controllers
@@ -12,7 +12,7 @@ namespace smarthack.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            Clasifier.Clasify();
+            //Classifier.Clasify();
             return new string[] { "value1", "value2" };
         }
 
