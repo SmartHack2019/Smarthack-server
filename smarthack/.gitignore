@@ -1,0 +1,11 @@
+packages/*
+*.dll
+*.pdb
+**/bin/*
+**/obj/*
+**/Debug/*
+.vs/smarthack/v16/Server/sqlite3/db.lock
+.vs/smarthack/v16/Server/sqlite3/storage.ide
+.vs/smarthack/v16/Server/sqlite3/storage.ide-shm
+.vs/smarthack/v16/Server/sqlite3/.suo
+.vs/smarthack/v16/Server/sqlite3/storage.ide-wal
