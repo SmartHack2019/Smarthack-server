@@ -24,14 +24,14 @@ namespace smarthack
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Database connections
-            if (CurrentEnvironment.IsDevelopment())
-                services.AddDbContext<SmartHackDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SmartHackDbContextConnection")));
-            //services.AddDbContext<SmartHackDbContext>(builder =>
-            //{
-            //    builder.UseMySql(
-            //    "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
-            //});
+            //            if (CurrentEnvironment.IsDevelopment())
+
+
+            services.AddDbContext<SmartHackDbContext>(builder =>
+            {
+                builder.UseMySql(
+                "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
+            });
 
             // CORS Policies
             services.AddCors(options =>
@@ -56,6 +56,8 @@ namespace smarthack
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
 
             app.UseCors();

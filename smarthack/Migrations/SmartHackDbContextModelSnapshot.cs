@@ -22,6 +22,8 @@ namespace smarthack.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Code");
+
                     b.Property<double>("Increase");
 
                     b.Property<string>("Name");
@@ -37,7 +39,7 @@ namespace smarthack.Migrations
 
             modelBuilder.Entity("smarthack.Models.News", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("CompanyId");
@@ -47,6 +49,8 @@ namespace smarthack.Migrations
                     b.Property<string>("Headline");
 
                     b.Property<string>("Link");
+
+                    b.Property<DateTime?>("Time");
 
                     b.HasKey("Id");
 

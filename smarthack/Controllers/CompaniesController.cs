@@ -15,9 +15,11 @@ namespace smarthack.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetCompanies()
         {
             var companies = await _context.Companies.ToListAsync();
+
             return Ok(new
             {
                 Items = companies
