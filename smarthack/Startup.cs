@@ -16,15 +16,31 @@ namespace smarthack
         }
 
         public IConfiguration Configuration { get; }
+        private IHostingEnvironment CurrentEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<SmartHackDbContext>(builder =>
+
+            // Database connections
+            if (CurrentEnvironment.IsDevelopment())
+                services.AddDbContext<SmartHackDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SmartHackDbContextConnection")));
+            //services.AddDbContext<SmartHackDbContext>(builder =>
+            //{
+            //    builder.UseMySql(
+            //    "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
+            //});
+
+            // CORS Policies
+            services.AddCors(options =>
             {
-                builder.UseMySql(
-                "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
+                options.DefaultPolicyName = "AppCorsPolicy";
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
+                });
             });
 
         }
@@ -42,7 +58,7 @@ namespace smarthack
                 app.UseHsts();
             }
 
-
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
