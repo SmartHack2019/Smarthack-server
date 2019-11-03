@@ -34,7 +34,7 @@ namespace smarthack.Controllers
             }).Take(10).ToListAsync();
             return Ok(new
             {
-                Items = news.OrderBy(x => x.Time)
+                Items = news.OrderByDescending(x => x.Time)
             });
 
         }
