@@ -26,12 +26,8 @@ namespace smarthack
             // Database connections
             if (CurrentEnvironment.IsDevelopment())
                 services.AddDbContext<SmartHackDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SmartHackDbContextConnection")));
-            //services.AddDbContext<SmartHackDbContext>(builder =>
-            //{
-            //    builder.UseMySql(
-            //    "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
-            //});
+                    options.UseMySql(Configuration.GetConnectionString("SmartHackDbContextConnection")));
+       
 
             // CORS Policies
             services.AddCors(options =>
@@ -42,7 +38,6 @@ namespace smarthack
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
                 });
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
