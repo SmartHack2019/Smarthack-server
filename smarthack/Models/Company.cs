@@ -12,6 +12,8 @@ namespace smarthack.Models
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+        public string Code { get; set; }
+
         public double Price { get; set; }
         public double Increase { get; set; }
         public double Percent { get; set; }
