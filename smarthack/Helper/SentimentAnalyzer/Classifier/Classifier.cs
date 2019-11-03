@@ -7,14 +7,34 @@ using static Microsoft.ML.DataOperationsCatalog;
 
 namespace smarthack.Helper.Classifier
 {
-    public static class Classifier
+    public class Classifier
     {
+        private static Classifier instance;
+        private static MLContext mlContext;
+        private static ITransformer model;
         private static readonly string _dataPath = Path.Combine(Environment.CurrentDirectory, "Data/SentimentAnalyzerData", "yelp_labelled.txt");
+
+        private Classifier()
+        {
+
+        }
+        public static Classifier Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Classifier();
+                    mlContext = new MLContext();
+                    TrainTestData splitDataView = LoadData(mlContext);
+                    model = BuildAndTrainModel(mlContext, splitDataView.TrainSet);
+                }
+                return instance;
+            }
+        }
+
         public static void Clasify()
         {
-            MLContext mlContext = new MLContext();
-            TrainTestData splitDataView = LoadData(mlContext);
-            ITransformer model = BuildAndTrainModel(mlContext, splitDataView.TrainSet);
             var predictionResult = UseModelWithSingleItem(mlContext, model);
         }
         public static TrainTestData LoadData(MLContext mlContext)

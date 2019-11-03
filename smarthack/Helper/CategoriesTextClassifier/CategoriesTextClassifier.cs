@@ -44,7 +44,7 @@ namespace smarthack.Helper.CategoriesTextClassifier
                 }
 
                 // Set up in the database the category
-
+                // 
             }
         }
     }
