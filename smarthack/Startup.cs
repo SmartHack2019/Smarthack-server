@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using smarthack.Data;
+using smarthack.Helper.Seeders;
 
 namespace smarthack
 {
@@ -33,6 +34,8 @@ namespace smarthack
                 "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_63117997832c3e6;User=ba980eb6f8bf25;Password=7d9c388c;");
             });
 
+            services.AddTransient<Seeder>();
+
             // CORS Policies
             services.AddCors(options =>
             {
@@ -46,7 +49,7 @@ namespace smarthack
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seeder seeder)
         {
             if (env.IsDevelopment())
             {
@@ -59,7 +62,7 @@ namespace smarthack
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
-
+            //            seeder.SeedTime(); ;
             app.UseCors();
             app.UseHttpsRedirection();
             app.UseMvc();
