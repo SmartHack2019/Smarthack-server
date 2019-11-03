@@ -26,11 +26,11 @@ namespace smarthack.Controllers
 
             var news = await _context.Newses.Where(x => x.CompanyId == companyId).Select(x => new NewsView
             {
-                Headline = "",
+                Headline = x.Headline,
                 Id = x.Id,
                 Impact = (double)rand.Next(-700, 700) / 100,
                 Link = x.Link,
-                Time = DateTime.Now.AddDays(rand.Next(10))
+                Time = (DateTime)x.Time
             }).Take(10).ToListAsync();
             return Ok(new
             {
