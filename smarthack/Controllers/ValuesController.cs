@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using smarthack.Data;
+using smarthack.Helper.AppNaiveBayes;
 using smarthack.Helper.Classifier;
 using System.Collections.Generic;
 
@@ -8,11 +10,17 @@ namespace smarthack.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        public static SmartHackDbContext _context;
+        public ValuesController(SmartHackDbContext context)
+        {
+            _context = context;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async System.Threading.Tasks.Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
             //Classifier.Clasify();
+            await MLExecuter.ExecuteAsync(_context);
             return new string[] { "value1", "value2" };
         }
 

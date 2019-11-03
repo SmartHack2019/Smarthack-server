@@ -30,7 +30,7 @@ namespace smarthack
             services.AddDbContext<SmartHackDbContext>(builder =>
             {
                 builder.UseMySql(
-                "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_1c3f591c0e17d07;User=b5977c722a69d6;Password=a7c61ba3;");
+                "Server=eu-cdbr-west-02.cleardb.net;Database=heroku_63117997832c3e6;User=ba980eb6f8bf25;Password=7d9c388c;");
             });
 
             // CORS Policies
