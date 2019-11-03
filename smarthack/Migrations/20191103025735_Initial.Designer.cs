@@ -9,7 +9,7 @@ using smarthack.Data;
 namespace smarthack.Migrations
 {
     [DbContext(typeof(SmartHackDbContext))]
-    [Migration("20191102173417_Initial")]
+    [Migration("20191103025735_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,8 @@ namespace smarthack.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code");
 
                     b.Property<double>("Increase");
 
@@ -39,7 +41,7 @@ namespace smarthack.Migrations
 
             modelBuilder.Entity("smarthack.Models.News", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("CompanyId");
@@ -49,6 +51,8 @@ namespace smarthack.Migrations
                     b.Property<string>("Headline");
 
                     b.Property<string>("Link");
+
+                    b.Property<DateTime?>("Time");
 
                     b.HasKey("Id");
 

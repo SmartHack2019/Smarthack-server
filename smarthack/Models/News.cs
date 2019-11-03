@@ -14,6 +14,7 @@ namespace smarthack.Models
         public string Headline { get; set; }
         public string Link { get; set; }
         public string Content { get; set; }
+        public DateTime? Time { get; set; }
 
         public Guid CompanyId { get; set; }
         public Company Company { get; set; }

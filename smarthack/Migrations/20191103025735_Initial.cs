@@ -13,6 +13,7 @@ namespace smarthack.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     Increase = table.Column<double>(nullable: false),
                     Percent = table.Column<double>(nullable: false)
@@ -30,6 +31,7 @@ namespace smarthack.Migrations
                     Headline = table.Column<string>(nullable: true),
                     Link = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
+                    Time = table.Column<DateTime>(nullable: true),
                     CompanyId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
